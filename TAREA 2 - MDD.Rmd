@@ -1,0 +1,31 @@
+---
+title: "Algoritmo Apriori"
+output: html_notebook
+---
+
+
+
+```{r}
+install.packages("arules")
+library(arules)
+
+data <- read.csv('C:\\Users\\jerdu\\Downloads\\db_csv_\\db_csv_\\PERSONA_BDP.csv', sep=",")
+
+#REGLA 1
+reglas <- apriori(data[,!names(data) %in% c("PEA", "POCUPA", "PEI", "Long", "Lat", "COD_MUNICIPIO", "PCP5", "NUM_HOGAR", "NUM_VIVIENDA", "RESCINGEO", "PCP33","PCP38_A","PCP38_B","PCP38_C", "PDESOC", "LUGNACGEO", "LUGAR_POBLADO" )],                            parameter = list(support=0.20, confidence=0.5 ))
+
+
+inspect(reglas[300:500][127])
+
+#REGLA 2
+
+inspect(reglas[1000:2000][11])
+
+#REGLA 3
+reglasChiquimula <- apriori(dataChiquimula[,!names(dataChiquimula) %in% c("PEA", "DEPARTAMENTO", "POCUPA", "PEI", "Long", "Lat", "COD_MUNICIPIO", "PCP5", "NUM_HOGAR", "NUM_VIVIENDA", "RESCINGEO", "PCP33","PCP38_A","PCP38_B","PCP38_C", "PDESOC", "LUGNACGEO", "LUGAR_POBLADO" )],                            parameter = list(support=0.20, confidence=0.5 ))
+
+
+inspect(reglasChiquimula[700:800][33])
+
+```
+
